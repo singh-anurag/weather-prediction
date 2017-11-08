@@ -43,12 +43,12 @@ object FileOperations {
   def getBomObservations(implicit bomCode: String) = {
  
     try{
-    Source.fromFile(filePath)(CommonData.bomFileCodec).getLines
+    Source.fromFile(filePath)(genericData.bomFileCodec).getLines
       .filter(x => dataPattern.findFirstIn(x).isDefined)
       .map(x => {
-        val y = x.split(CommonData.bomFileSep)
+        val y = x.split(genericData.bomFileSep)
         //If values missing, the assume zero.
-        CommonData.fields(y(1),
+        genericData.fields(y(1),
           if (y(2) == "") 0.0D else y(2).toDouble,
           if (y(3) == "") 0.0D else y(3).toDouble,
           if (y(4) == "") 0.0D else y(4).toDouble,
