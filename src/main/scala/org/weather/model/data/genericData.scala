@@ -24,15 +24,17 @@ object CommonData {
   case class codes(IATACode: String, bomCode: String)
   case class dateRange(min: Int, max: Int)              //Max & Min date ranges.
 
-  //Fileds used in the forecast. 
+  //Fileds used in the forecast.
+  //There is data corresponding to 21 different fields present in file from Bureau of Meteorology.
+  //Only 8 Fields are used for our project.
   case class fields(date: String,                       //Field 1
                     min_temp: Double,                   //Field 2
                     max_temp: Double,                   //Field 3
                     rainfall: Double,                   //Field 4
-                    sunshine: Double,                   //Field 5
-                    relative_humidity: Integer,         //Field 6
-                    cloud_amount: Integer,              //Field 7
-                    pressure: Double)                   //Field 8
+                    sunshine: Double,                   //Field 6
+                    relative_humidity: Integer,         //Field 11
+                    cloud_amount: Integer,              //Field 12
+                    pressure: Double)                   //Field 15
 
   //Array of the cities with corresponding IATACodes and bom file names
   //IATA Codes are collected from http://www.iata.org/publications/Pages/code-search.aspx 
