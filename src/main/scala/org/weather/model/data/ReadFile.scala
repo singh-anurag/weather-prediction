@@ -6,7 +6,7 @@ import java.io.File
 import java.io.PrintWriter
 import java.io.FileNotFoundException
 
-object FileOperations {
+object ReadFile {
 
   private def filePath(implicit bomCode: String) = bomCode
   private val dataPattern = "^,[0-9]{4}-[0-9]{2}-[0-9]{1,2},".r
