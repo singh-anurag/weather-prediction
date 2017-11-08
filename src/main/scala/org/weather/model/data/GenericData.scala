@@ -8,7 +8,7 @@ import scala.io.Codec
  * @description
  * 		Object to hold some of the Common data structures & constants used in various places of the application.
  */
-object CommonData {
+object GenericData {
 
   val bomBaseUrl = "http://www.bom.gov.au/climate/dwo/" //url prefix for Bureau of Meteorology data.
   val bomFileCodec = Codec("windows-1252")              //Codec of Bureau of Meteorology data file.
