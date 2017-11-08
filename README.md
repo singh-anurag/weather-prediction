@@ -9,3 +9,22 @@ like temperature, humidity etc. are predicted. Time-series analysis is the core 
 Data required for the prediction is sourced from BOM (Bureau of Meteorology, Australia).
 
 Scope of the application can be altered/widened by changing the source of input data.
+
+# Development
+
+## Design and Build
+The application is designed using following 
+1. Scala
+2. SBT (Scala Build Tool)
+3. Java
+
+Project uses SBT for building and converting the code into a jar
+
+## Execution
+Command line parms must be specifed in pairs in the format --name value. 
+Internally application validates this format & converts to a Map(name -> vlaue)
+
+Application expects, 4 mandatory command line parms viz. dataSource, year, month, outFile. Optional parameter dateRange allows to override the default date range of (201610 to 201711). This range can be adjusted according to the data availablity in Bureau of 
+Meteorlogy.
+
+As of now dataSource is Bureau of Meteorlogy, the data is downloaded from BOM website before forecasting else it expects the data to be in local files in current working dierctory.
