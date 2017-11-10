@@ -8,8 +8,8 @@ import com.cloudera.sparkts.models.ARIMA
 import breeze.linalg.Vector
 
 /**
- * @author anandraj
- * @written 25 June, 2016
+ * @author anurag
+ * @written 10 Novemebr, 2017
  * @description 
  * 			Organizes the functions used in performing the prediction functions 
  * 
