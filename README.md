@@ -28,3 +28,13 @@ Application expects, 4 mandatory command line parms viz. dataSource, year, month
 Meteorlogy.
 
 As of now dataSource is Bureau of Meteorlogy, the data is downloaded from BOM website before forecasting else it expects the data to be in local files in current working dierctory.
+
+## Dependencies
+
+There are certain dependencies in the code with the help of which expected output os acheived.
+All dependencies are listed below in an orderly manner 
+
+1. sparkts (For ARIMA timeseries analysis.)
+2. spark-code & spark-mllib (For prediction and forecast)
+3. joda-time (Date - time utility)
+4. json4s (Extracting Geo-cordinates from Google Rest API response json)
