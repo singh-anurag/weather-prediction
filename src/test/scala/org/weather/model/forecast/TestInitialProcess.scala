@@ -1,7 +1,7 @@
 package org.weather.model.forecast
 
 import org.scalatest.FunSuite
-import org.weather.model.data.CommonData
+import org.weather.model.data.GenericData
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -25,7 +25,7 @@ class TestInitalProcess extends FunSuite {
   test("Test invalid Month exception") {
     //Test month validation throws correct Exception & message
     val thrown = intercept[IllegalArgumentException] {
-      InitialProcess.getDate(Map("year" -> "2016", "month" -> "13"))
+      InitialProcess.getDate(Map("year" -> "2017", "month" -> "13"))
     }
 
     assert(thrown.getMessage === "requirement failed: Year or Month is not numeric or month is not in valid range")
@@ -42,21 +42,21 @@ class TestInitalProcess extends FunSuite {
   test("Test valid date out of range exception") {
     //Test exception is thrown if input date is out of default range.
     val thrown = intercept[IllegalArgumentException] {
-      InitialProcess.getDate(Map("year" -> "2017", "month" -> "01"))
+      InitialProcess.getDate(Map("year" -> "2018", "month" -> "01"))
     }
 
-    assert(thrown.getMessage === "requirement failed: Input date is not between min (dateRange(201505,201606).min) & max(dateRange(201505,201606).max) range")
+    assert(thrown.getMessage === "requirement failed: Input date is not between min (dateRange(201610,201711).min) & max(dateRange(201610,201711).max) range")
   }
 
   test("Parsing of valid date") {
-    //Test if dare parsing return correct date after validation.
-    assert(InitialProcess.getDate(Map("year" -> "2016", "month" -> "01")) == 201601)
+    //Test if date parsing return correct date after validation.
+    assert(InitialProcess.getDate(Map("year" -> "2017", "month" -> "01")) == 201601)
   }
 
   test("Test exception for invalid min & max dates") {
     //Check if invalid dateRange is supplied, correct exception is thrown
     val thrown = intercept[IllegalArgumentException] {
-      InitialProcess.getDate(Map("year" -> "2016", "month" -> "01", "dateRange" -> "201606|201505"))
+      InitialProcess.getDate(Map("year" -> "2016", "month" -> "09", "dateRange" -> "201711|201610"))
     }
 
     assert(thrown.getMessage == "requirement failed: date range is not valid")
@@ -64,7 +64,7 @@ class TestInitalProcess extends FunSuite {
 
   test("Test download File") {
     //Test File download correctly downloads the expected file
-    InitialProcess.downlaodObservationData(Map("SYDNEY" -> CommonData.codes("SYD", "IDCJDW4019")), 201601, "bom")
+    InitialProcess.downlaodObservationData(Map("SYDNEY" -> GenericData.codes("SYD", "IDCJDW4019")), 201701, "bom")
     assert(Files.exists(Paths.get("IDCJDW2801")))
   }
   
