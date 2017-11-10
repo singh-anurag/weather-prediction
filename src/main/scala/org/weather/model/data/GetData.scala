@@ -10,7 +10,7 @@ import com.typesafe.config.ConfigFactory
 import java.io.FileNotFoundException
 
 /**
- * @author singhanurag
+ * @author anurag
  * @written 08 November, 2017
  * @description Object to handle data needs of the application
  * 	1. Read data mapping file to get mapping between City -> (IATACode, BOM Code)
@@ -38,10 +38,10 @@ object GetData {
    * 
    * */
 
-  def fileDownloader(date: Int, mapping: CommonData.codes) {
+  def fileDownloader(date: Int, mapping: GenericData.codes) {
     val bomFileCode = mapping.bomCode
     val IATACode = mapping.IATACode
-    val url = CommonData.bomBaseUrl + date + "/text/" + bomFileCode + "." + date + ".csv"
+    val url = GenericData.bomBaseUrl + date + "/text/" + bomFileCode + "." + date + ".csv"
     try {
       new URL(url) #> new File(bomFileCode) !!
     } catch {
@@ -56,13 +56,13 @@ object GetData {
 
   def getMaxMinDate(dateRange: String) = {
     //Read only first line from the date range file. Then split the files by default field Separator.   
-    val dates = dateRange.split(CommonData.defaultFieldSep)
+    val dates = dateRange.split(GenericData.defaultFieldSep)
 
     require(dates.size == 2 && //Only a tuple of size 2 is supplied
       (dates(0) + dates(1)).forall(_.isDigit) && //Check all the digits is number.
       dates(0).toInt < dates(1).toInt, "date range is not valid") //Check if the left date is less than right
 
-    CommonData.dateRange(dates(0).toInt, dates(1).toInt)
+    GenericData.dateRange(dates(0).toInt, dates(1).toInt)
 
   }
   /*
