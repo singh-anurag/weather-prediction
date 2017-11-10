@@ -3,7 +3,7 @@ package org.weather.model.data
 import scala.io.Codec
 
 /**
- * @author singhanurag
+ * @author anurag
  * @written 08 November, 2017
  * @description
  * 		Object to hold some of the Common data structures & constants used in various places of the application.
