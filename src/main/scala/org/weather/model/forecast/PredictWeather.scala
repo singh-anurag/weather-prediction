@@ -6,7 +6,7 @@ import org.weather.model.data.{ ReadFile, GetData }
  * @author anurag
  * @written 10 November, 2017
  * @Descriptoin:
- * 	 			Entry point for the weather forecast application, it collects the cities to which weather has to be forecasted,
+ * Entry point for the weather forecast application, it collects the cities to which weather has to be forecasted,
  * downloads observation data. Then users ARIM time series analysis, to predict the various weather conditions like average
  * temperature(°C), Relative Humidity(%) and Pressure(hPa).
  *
