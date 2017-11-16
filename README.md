@@ -100,9 +100,7 @@ save it by pressing ctrl+S. Right click in the workspace and look for option "Ru
 1. Then select "1 Scala Application"
 2. The output will be displayed in console below as  "Hello World!"
 
-Integrate sbt with Scala IDE for Eclipse
-
-## Now we will see how sbt can be integrated with Scala IDE for Eclipse
+## Now we will see how SBT can be integrated with Scala IDE for Eclipse
 
 Steps to integrate sbt with Scala IDE for Eclipse
 
@@ -112,21 +110,43 @@ Steps to integrate sbt with Scala IDE for Eclipse
 4. Add addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0") to plugins.sbt
 5. Project uses SBT for building and converting the code into a jar
 
-## Execution
-Command line parms must be specifed in pairs in the format --name value. 
-Internally application validates this format & converts to a Map(name -> vlaue)
+Through command line traverse to workspace location of the project
+C:\Users\Utkarsh\workspace\Demo\simple-scala in this case.
 
-Application expects, 4 mandatory command line parms viz. dataSource, year, month, outFile. Optional parameter dateRange allows to override the default date range of (201610 to 201711). This range can be adjusted according to the data availablity in Bureau of 
-Meteorlogy.
+Create a build.sbt file with below mentioned parameters:
+name := "simple-scala"
+version := "1.0"
+scalaVersion := "2.10.4"
 
-As of now dataSource is Bureau of Meteorlogy, the data is downloaded from BOM website before forecasting else it expects the data to be in local files in current working dierctory.
+Now run following command "sbt package". Once completed a target directory will be created with jar file. Naming convention will be as follows 
+1. name of project
+2. scala version and 
+3. application version as mentioned in build.sbt file.
+Hence our jar name will be simple-scala_2.10-1.0.jar. Now type command "sbt run" and we will get the output of the program. 
+In our case it will be "Hello World!"
+
+However in bigger projects we have to specify main method name in the command to execute it.
+The command for the same will be slightly modified as sbt "run-main hw".
+Also in case any parameters needs to be passed can be given inside the double quotes.
+For example sbt "run-main hw Hello"
+
+## Creation of Jar and Execution
+In our case where there are large number of library dependencies, creating a jar utilises assembly.sbt file. Create one assembly.sbt file in project directory inside root folder. Once plugins.sbt and assembly.sbt file is created place it in desired location and traverse to home directory of your project through command line.Type "sbt eclipse" to generate the files Eclipse needs. You may see a lot of output the first time you run the command as SBT checks everything it needs, but at the end of the output you should see a “success” message, like this:
+
+$ sbt eclipse
+[info] Successfully created Eclipse project files for project(s):
+[info] YourProjectNameHere
 
 ## Dependencies
 
-There are certain dependencies in the code with the help of which expected output os acheived.
+There are certain dependencies in the code with the help of which expected output is achieved.
 All dependencies are listed below in an orderly manner 
 
 1. sparkts (For ARIMA timeseries analysis.)
 2. spark-code & spark-mllib (For prediction and forecast)
 3. joda-time (Date - time utility)
 4. json4s (Extracting Geo-cordinates from Google Rest API response json)
+
+Same dependencies are mentioned in build.sbt file. This enables sbt to have all packages installed so as to avoid any conflicts during future course of development.
+
+
