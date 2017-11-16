@@ -69,12 +69,12 @@ Before setting up Scala IDE let us understand the advantages of having IDE
 
 Steps to install Scala IDE for Eclipse
 
-Launch Eclipse
-Go to “Help” in top menu -> “Eclipse Marketplace”
-Search for Scala IDE
-Click on Install
-Once installed restart Eclipse
-Go to File -> New -> and see whether “Scala Application” is available or not.
+1. Launch Eclipse
+2. Go to “Help” in top menu -> “Eclipse Marketplace”
+3. Search for Scala IDE
+4. Click on Install
+5. Once installed restart Eclipse
+6. Go to File -> New -> and see whether “Scala Application” is available or not.
 
 Validate Scala IDE for Eclipse
 
@@ -95,23 +95,22 @@ object hw {
     println("Hello World!")
 }
 }
-save it by pressing ctrl+S
-Right click in the workspace and look for option "Run As"
-then select "1 Scala Application"
-The output will be displayed in console below as
-"Hello World!"
+
+save it by pressing ctrl+S. Right click in the workspace and look for option "Run As". 
+1. Then select "1 Scala Application"
+2. The output will be displayed in console below as  "Hello World!"
 
 Integrate sbt with Scala IDE for Eclipse
 
-Now we will see how sbt can be integrated with Scala IDE for Eclipse
+## Now we will see how sbt can be integrated with Scala IDE for Eclipse
 
 Steps to integrate sbt with Scala IDE for Eclipse
 
-Check whether ~/.sbt/<version>/plugins/plugins.sbt exists, if not
-Create plugins directory under ~/.sbt/<version> mkdir -p ~/.sbt/0.13/plugins
-cd ~/.sbt/0.13/plugins
-Add addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0") to plugins.sbt
-Project uses SBT for building and converting the code into a jar
+1. Check whether ~/.sbt/<version>/plugins/plugins.sbt exists, if not
+2. Create plugins directory under ~/.sbt/<version> mkdir -p ~/.sbt/0.13/plugins
+3. cd ~/.sbt/0.13/plugins
+4. Add addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "4.0.0") to plugins.sbt
+5. Project uses SBT for building and converting the code into a jar
 
 ## Execution
 Command line parms must be specifed in pairs in the format --name value. 
