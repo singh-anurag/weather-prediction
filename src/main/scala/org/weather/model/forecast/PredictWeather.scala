@@ -9,10 +9,8 @@ import org.weather.model.data.{ ReadFile, GetData }
  * Entry point for the weather forecast application, it collects the cities to which weather has to be forecasted,
  * downloads observation data. Then users ARIM time series analysis, to predict the various weather conditions like average
  * temperature(°C), Relative Humidity(%) and Pressure(hPa).
- *
  * Outlook of the day is predicted using max cloud cover in the forecast period, Average sunshine hours and the above mentioned
  * 3 predicted parameters.
- *
  */
 
 object PredictWeather extends App {
@@ -43,5 +41,4 @@ object PredictWeather extends App {
 
   //Write the predicted forecast to output file
   ReadFile.writeForecasts(finalPredictions, argsMap("outFile"))
-
 }
