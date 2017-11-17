@@ -14,6 +14,9 @@ libraryDependencies ++= Seq(
                               "org.scalatest" % "scalatest_2.10" % "2.2.6" % "test" withSources() withJavadoc(),
                               "joda-time" % "joda-time" % "2.9.2" withSources() withJavadoc(),
                               "org.json4s" %% "json4s-native" % "3.4.0"
+                              "org.scalatra" %% "scalatra" % "2.2.1",
+                              "org.scalatra" %% "scalatra-scalate" % "2.2.1",
+                              "org.scalatra" %% "scalatra-specs2" % "2.2.1" % "test",
                               )
 /*
 if a project uses a particular version of scala, but a transitive dependency uses one of the scala-lang optionals
@@ -59,7 +62,6 @@ assemblyExcludedJars in assembly := {
                             "stax-api-1.0.1.jar")
   cp filter { jar => excludesJar.contains(jar.data.getName)}
 }
-
 
 resolvers ++= Seq(
   "JBoss Repository" at "http://repository.jboss.org/nexus/content/repositories/releases/",
