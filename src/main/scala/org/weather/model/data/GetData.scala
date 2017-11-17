@@ -13,15 +13,12 @@ import java.io.FileNotFoundException
  * @author anurag
  * @written 08 November, 2017
  * @description Object to handle data needs of the application
- * 	1. Read data mapping file to get mapping between City -> (IATACode, BOM Code)
- * 	2. Download required historical weather data from Bureau of Meteorology(BOM) Australia.
- *
- */
+ * 1. Read data mapping file to get mapping between City -> (IATACode, BOM Code)
+ * 2. Download required historical weather data from Bureau of Meteorology(BOM) Australia.
+*/
 
 object GetData {
-
-  /* 
-   * Get the Cities for which weather forecasting is done with mapping to IATA Codes and BOM File codes for the city.
+  /* Get the Cities for which weather forecasting is done with mapping to IATA Codes and BOM File codes for the city.
    * Mapping is stored in the dataFolder defined above in file mapping.txt
    */
   def getMappingData(): Map[String, GenericData.codes] = {
@@ -30,14 +27,12 @@ object GetData {
     ) yield (line(0), GenericData.codes(line(1), line(2)))
     mapping.toMap
   }
-
   /*
    * Function to download weather data for given cities from bom Website for a given 
    * city and date(year & month)
    * eg:url for Darwin, June 2016 data - http://www.bom.gov.au/climate/dwo/201606/text/IDCJDW8014.201606.csv 
    * 
    * */
-
   def fileDownloader(date: Int, mapping: GenericData.codes) {
     val bomFileCode = mapping.bomCode
     val IATACode = mapping.IATACode
@@ -48,22 +43,17 @@ object GetData {
       case e: Exception => throw new Exception(s"Error when donloading from $url")
     }
   }
-
   /*
    * Function to get max & min date range between which the observation data is available for download 
    * to this application. If the input date for which the forecast must be predicted.
    */
-
   def getMaxMinDate(dateRange: String) = {
     //Read only first line from the date range file. Then split the files by default field Separator.   
     val dates = dateRange.split(GenericData.defaultFieldSep)
-
     require(dates.size == 2 && //Only a tuple of size 2 is supplied
       (dates(0) + dates(1)).forall(_.isDigit) && //Check all the digits is number.
       dates(0).toInt < dates(1).toInt, "date range is not valid") //Check if the left date is less than right
-
     GenericData.dateRange(dates(0).toInt, dates(1).toInt)
-
   }
   /*
    * Function to get the Lat, long & elevation form google API.
@@ -79,5 +69,4 @@ object GetData {
     val elevation = ((jsonElevation \ "results")(0) \ "elevation").extract[Double]
     Array("%.2f".format(lat), "%.2f".format(long), elevation.round).mkString(",")
   }
-
 }
