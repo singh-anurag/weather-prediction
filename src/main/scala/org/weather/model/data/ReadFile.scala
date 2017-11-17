@@ -7,14 +7,11 @@ import java.io.PrintWriter
 import java.io.FileNotFoundException
 
 object ReadFile {
-
   private def filePath(implicit bomCode: String) = bomCode
   private val dataPattern = "^,[0-9]{4}-[0-9]{2}-[0-9]{1,2},".r
-
   /*
    * From the file read with below structure. It extracts the required fileds.
    * The files are defined in trait GenericData.fields
-   * 
    * Structure of file downloaded from bom.
    * (,0)
    * ("Date",1)
@@ -38,11 +35,9 @@ object ReadFile {
    * ("3pm wind direction",19)
    * ("3pm wind speed (km/h)",20)
    * ("3pm MSL pressure (hPa)",21)
-   * 
    */
   def getBomObservations(implicit bomCode: String) = {
- 
-    try{
+     try{
     Source.fromFile(filePath)(GenericData.bomFileCodec).getLines
       .filter(x => dataPattern.findFirstIn(x).isDefined)
       .map(x => {
@@ -56,18 +51,15 @@ object ReadFile {
           if (y(11) == "") 0 else y(11).toInt,
           if (y(12) == "") 4 else y(12).toInt + 1,
           if (y(15) == "") 0.0D else y(15).toDouble)
-
       }).toList
     } catch {
       case ex: FileNotFoundException => throw new FileNotFoundException(ex.getMessage 
           + ". Data source is not bom and files not found in the current folder")
     }
   }
-
   def writeForecasts(values: Array[String], outFile: String) = {
     val pw = new PrintWriter(new File(outFile))
     for (value <- values) pw.write(value + "\n")
     pw.close
   }
-
 }
