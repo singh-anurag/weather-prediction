@@ -6,13 +6,12 @@ import scala.io.Codec
  * @author anurag
  * @written 08 November, 2017
  * @description
- * 		Object to hold some of the Common data structures & constants used in various places of the application.
+ * Object to hold some of the Common data structures & constants used in various places of the application.
  */
 object GenericData {
 
   val bomBaseUrl = "http://www.bom.gov.au/climate/dwo/" //url prefix for Bureau of Meteorology data.
   val bomFileCodec = Codec("windows-1252")              //Codec of Bureau of Meteorology data file.
-
   val defaultFieldSep = "\\|"                           //psv field separator when reading & splitting.
   val defaultWriteSep = "|"                             //pipe separator when writing 
   val bomFileSep = ","                                  //Field separator for bom observations data.
